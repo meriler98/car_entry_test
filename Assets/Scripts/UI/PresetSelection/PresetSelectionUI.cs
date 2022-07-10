@@ -8,7 +8,6 @@ public class PresetSelectionUI : MonoBehaviour
 {
     [SerializeField] private ConfigurationLoaderView configurationLoaderView;
     [SerializeField] private Button startCreationButton;
-    [SerializeField] private ConfigurationEditorUI configurationEditorUI;
 
     public EventHandler<OnLoadPresetEventArgs> OnLoadPreset;
     public EventHandler OnCreateConfiguration;
