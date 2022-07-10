@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3978.8037, g: 4853.81, b: 6176.016, a: 1}
+  m_IndirectSpecularColor: {r: 3960.9092, g: 4832.484, b: 6146.901, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2864,6 +2864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   singleSelection: 1
+  toggleTemplate: {fileID: 4594101470118343028, guid: 8937ccaea7e26bb41be641ddeb6a1491,
+    type: 3}
 --- !u!1 &755390461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4089592016401541555, guid: 860571b144148044b9e6bf7ed68c42c5,
@@ -3340,11 +3342,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 854469994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 928db5e0413148a3bf0330742ed43e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 1
+  singleSelection: 1
+  toggleTemplate: {fileID: 0}
 --- !u!114 &854469997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5496,11 +5498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b4e7a57eedfc43b99580c4052dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleTemplate: {fileID: 4594101470118343028, guid: 8937ccaea7e26bb41be641ddeb6a1491,
-    type: 3}
-  buttonContainer: {fileID: 751751803}
-  descriptionText: {fileID: 1832643049}
   toggleGroup: {fileID: 751751804}
+  descriptionText: {fileID: 1832643049}
 --- !u!1 &1391577736
 GameObject:
   m_ObjectHideFlags: 0

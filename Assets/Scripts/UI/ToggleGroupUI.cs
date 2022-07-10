@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToggleGroupUI : MonoBehaviour
 {
     [SerializeField] private bool singleSelection;
+    [SerializeField] private ToggleButtonUI toggleTemplate;
     
     private List<ToggleButtonUI> _toggles = new List<ToggleButtonUI>();
 
@@ -12,10 +13,14 @@ public class ToggleGroupUI : MonoBehaviour
     
     public EventHandler<OnToggleSelectedEventArgs> OnToggleButtonSelected;
 
-    public void AddToggleToGroup(ToggleButtonUI toggle)
+    public ToggleButtonUI AddToggleToGroup()
     {
-        _toggles.Add(toggle);
-        toggle.OnToggled += Toggle_OnToggled;
+        var newToggle = Instantiate(toggleTemplate, transform);
+        
+        _toggles.Add(newToggle);
+        newToggle.OnToggled += Toggle_OnToggled;
+
+        return newToggle;
     }
 
     public void RemoveToggleFromGroup(ToggleButtonUI toggle)

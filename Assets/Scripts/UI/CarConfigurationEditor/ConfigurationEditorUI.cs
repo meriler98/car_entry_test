@@ -12,15 +12,15 @@ public class ConfigurationEditorUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         
-        versionSelectionView.OnVersionInfoSelected += VersionSelection_OnVersionInfoSelected;
-        versionSelectionView.SetVersions(configurationData.VersionInfos);
+        versionSelectionView.OnItemSelected += VersionSelection_OnVersionInfoSelected;
+        versionSelectionView.SetItems(configurationData.VersionInfos);
     }
 
     public void Hide()
     {
         gameObject.SetActive(false);
         
-        versionSelectionView.OnVersionInfoSelected -= VersionSelection_OnVersionInfoSelected;
+        versionSelectionView.OnItemSelected -= VersionSelection_OnVersionInfoSelected;
     }
     
     public void SetConfigurationModel(CarConfigurationModel carConfigurationModel)
@@ -33,10 +33,10 @@ public class ConfigurationEditorUI : MonoBehaviour
         _currentEditingIndex = index;
     }
     
-    private void VersionSelection_OnVersionInfoSelected(object sender, VersionSelectionView.OnVersionInfoSelectedEventArgs e)
+    private void VersionSelection_OnVersionInfoSelected(object sender, VersionSelectionView.OnItemSelectedEventArgs<VersionInfoSO> e)
     {
         if(_currentModel == null) return;
         
-        _currentModel.SetVersion(e.VersionSelected);
+        _currentModel.SetVersion(e.ItemSelected);
     }
 }
