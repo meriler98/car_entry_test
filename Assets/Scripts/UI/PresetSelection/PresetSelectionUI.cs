@@ -9,13 +9,12 @@ public class PresetSelectionUI : MonoBehaviour
     [SerializeField] private ConfigurationLoaderView configurationLoaderView;
     [SerializeField] private Button startCreationButton;
     [SerializeField] private ConfigurationEditorUI configurationEditorUI;
-    
-    private PersistentData _persistentData;
+
+    public EventHandler<OnLoadPresetEventArgs> OnLoadPreset;
+    public EventHandler OnCreateConfiguration;
 
     private void Start()
     {
-        InitializePersistentData();
-        
         configurationLoaderView.OnModelLoad += Loader_OnModelLoad;
         startCreationButton.onClick.AddListener(Start_OnClick);
     }
@@ -24,18 +23,6 @@ public class PresetSelectionUI : MonoBehaviour
     {
         configurationLoaderView.OnModelLoad -= Loader_OnModelLoad;
         startCreationButton.onClick.RemoveListener(Start_OnClick);
-    }
-
-    private void InitializePersistentData()
-    {
-        _persistentData = FindObjectOfType<PersistentData>();
-
-        if (_persistentData == null)
-        {
-            Debug.LogWarning("Persistent data object is missing! Creating new");
-            var newGo = new GameObject("PersistentData");
-            _persistentData = newGo.AddComponent<PersistentData>();
-        }
     }
 
     public void Show()
@@ -48,30 +35,23 @@ public class PresetSelectionUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SwitchToConfigurationEditor(int editingIndex)
-    {
-        configurationEditorUI.SetConfigurationModel(_persistentData.GetCarConfiguration(editingIndex));
-        configurationEditorUI.SetConfigurationEditingIndex(editingIndex);
-        
-        Hide();
-        configurationEditorUI.Show();
-    }
-    
-    public void SwitchToConfigurationEditor()
-    {
-        configurationEditorUI.SetConfigurationModel(new CarConfigurationModel());
-        
-        Hide();
-        configurationEditorUI.Show();
-    }
-    
     private void Loader_OnModelLoad(object sender, ConfigurationLoaderView.OnModelLoadedEventArgs e)
     {
-        SwitchToConfigurationEditor(e.LoadedIndex);
+        OnLoadPreset?.Invoke(this, new OnLoadPresetEventArgs(e.LoadedIndex));
     }
 
     private void Start_OnClick()
     {
-        SwitchToConfigurationEditor();
+        OnCreateConfiguration?.Invoke(this, EventArgs.Empty);
+    }
+
+    public class OnLoadPresetEventArgs : EventArgs
+    {
+        public int PresetIndex { get; }
+
+        public OnLoadPresetEventArgs(int presetIndex)
+        {
+            PresetIndex = presetIndex;
+        }
     }
 }
