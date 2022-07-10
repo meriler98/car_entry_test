@@ -42,7 +42,7 @@ public class ConfiguratorUI : MonoBehaviour
 
     private void PresetLoader_OnLoadPreset(object sender, PresetSelectionUI.OnLoadPresetEventArgs e)
     {
-        _selectedPresetIndex = e.PresetIndex;
+        configuratorEditor.SetConfigurationEditingIndex(e.PresetIndex);
         ChangeToConfiguratorEditor(_persistentData.GetCarConfiguration(_selectedPresetIndex));
     }
 }
