@@ -30,6 +30,8 @@ public class ToggleButtonUI : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void SetButtonText(string toggleText)
     {
+        if(text == null) return;
+        
         text.text = toggleText;
     }
 
@@ -50,12 +52,12 @@ public class ToggleButtonUI : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public class OnToggledEventArgs : EventArgs
     {
         public int InstanceID { get; }
-        public bool ToggledOn { get; }
+        public bool IsToggledOn { get; }
 
-        public OnToggledEventArgs(int instanceID, bool toggledOn)
+        public OnToggledEventArgs(int instanceID, bool isToggledOn)
         {
             InstanceID = instanceID;
-            ToggledOn = toggledOn;
+            IsToggledOn = isToggledOn;
         }
     }
 }

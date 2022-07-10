@@ -10,12 +10,11 @@ public class VersionSelectionView : MonoBehaviour
 {
     [SerializeField] private ToggleButtonUI toggleTemplate;
     [SerializeField] private HorizontalLayoutGroup buttonContainer;
-    [SerializeField] private ContentSizeFitter buttonContainerContentSizeFitter;
     [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private ToggleGroupUI toggleGroup;
 
     private RectTransform _cachedRectTranform;
     private VersionInfoSO[] _versions;
-    private List<ToggleButtonUI> _toggles = new List<ToggleButtonUI>();
     private Dictionary<ToggleButtonUI, VersionInfoSO> _versionInfoDirctionary = new Dictionary<ToggleButtonUI, VersionInfoSO>();
 
     public EventHandler<OnVersionInfoSelectedEventArgs> OnVersionInfoSelected;
@@ -23,6 +22,16 @@ public class VersionSelectionView : MonoBehaviour
     private void Awake()
     {
         _cachedRectTranform = GetComponent<RectTransform>();
+    }
+
+    private void Start()
+    {
+        toggleGroup.OnToggleButtonSelected += ToggleGroup_OnToggleButtonSelected;
+    }
+
+    private void OnDestroy()
+    {
+        toggleGroup.OnToggleButtonSelected += ToggleGroup_OnToggleButtonSelected;
     }
 
     public void SetVersions(params VersionInfoSO[] versionInfos)
@@ -44,51 +53,35 @@ public class VersionSelectionView : MonoBehaviour
             return;
         }
 
-        SetToggleSelected(toggleForVersion, isToggleOn);
+        UpdateVersionInfo(toggleForVersion, isToggleOn);
     }
 
-    private void SetToggleSelected(ToggleButtonUI toggle, bool isToggledOn)
+    private void UpdateVersionInfo(ToggleButtonUI toggle, bool isToggledOn)
     {
-        foreach (var toggleElement in _toggles)
+        var versionInfo = _versionInfoDirctionary[toggle];
+                
+        if (versionInfo == null)
         {
-            if (toggleElement.GetInstanceID() == toggle.GetInstanceID())
-            {
-                var versionInfo = _versionInfoDirctionary[toggleElement];
-                
-                if (versionInfo == null)
-                {
-                    Debug.LogError("Couldn't find toggle stored in dictionary!");
-                    continue;
-                }
-
-                // Updating description field
-                if (isToggledOn)
-                {
-                    OnVersionInfoSelected?.Invoke(this, new OnVersionInfoSelectedEventArgs(versionInfo));
-                    descriptionText.text = versionInfo.Description;
-                }
-                else
-                    descriptionText.text = "";
-                
-                continue;
-            };
-            
-            toggleElement.SetToggle(false);
+            Debug.LogError("Couldn't find toggle stored in dictionary!");
         }
+                
+        if (isToggledOn)
+        {
+            OnVersionInfoSelected?.Invoke(this, new OnVersionInfoSelectedEventArgs(versionInfo));
+            descriptionText.text = versionInfo.Description;
+        }
+        else
+            descriptionText.text = "";
 
         // Force rebuild UI for content fitter
         UIUtilities.ForceLayoutRebuild(this, _cachedRectTranform);
     }
-    
+
     private void UpdateToggles()
     {
         // Removing old toggles
-        foreach (var toggle in _toggles)
-        {
-            toggle.OnToggled -= Toggle_OnToggled;
-            Destroy(toggle.gameObject);
-        }
-        _toggles.Clear();
+        toggleGroup.ClearToggles();
+        
         _versionInfoDirctionary.Clear();
 
         // Replacing with new ones
@@ -97,26 +90,29 @@ public class VersionSelectionView : MonoBehaviour
             var toggle = Instantiate(toggleTemplate, buttonContainer.transform);
             
             toggle.SetButtonText(version.VersionName);
-            toggle.OnToggled += Toggle_OnToggled;
-            
-            _toggles.Add(toggle);
+            toggleGroup.AddToggleToGroup(toggle);
+
             _versionInfoDirctionary[toggle] = version;
         }
     }
 
-    private void Toggle_OnToggled(object sender, ToggleButtonUI.OnToggledEventArgs e)
+    private void ToggleGroup_OnToggleButtonSelected(object sender, ToggleGroupUI.OnToggleSelectedEventArgs e)
     {
-        var toggle = _toggles.FirstOrDefault(x => e.InstanceID == x.GetInstanceID());
-        
-        if (toggle == null)
+        var toggleVersionPair = _versionInfoDirctionary
+            .FirstOrDefault(x => x.Key == e.SelectedToggle);
+
+        if (toggleVersionPair.Value == null)
         {
-            Debug.LogError($"Couldn't find toggle with ID {e.InstanceID}");
+            Debug.LogError("Failed to find corresponding version info");
             return;
         }
         
-        SetToggleSelected(toggle, e.ToggledOn);
+        UpdateVersionInfo(e.SelectedToggle, e.IsToggledOn);
+        
+        if(e.IsToggledOn)
+            OnVersionInfoSelected?.Invoke(this, new OnVersionInfoSelectedEventArgs(toggleVersionPair.Value));
     }
-    
+
     public class OnVersionInfoSelectedEventArgs : EventArgs
     {
         public VersionInfoSO VersionSelected { get; }
