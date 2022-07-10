@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06016e8dd914346b1bb79879a009df8, type: 3}
   m_Name: Inscription
   m_EditorClassIdentifier: 
-  name: Inscription
+  versionName: Inscription
   description: "The most sophisticated XC40 model. Chrome exterior details, unique
     wheels and exclusive leather seats create absolute Scandinavian luxury.\r"

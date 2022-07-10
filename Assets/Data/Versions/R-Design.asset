@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06016e8dd914346b1bb79879a009df8, type: 3}
   m_Name: R-Design
   m_EditorClassIdentifier: 
-  name: R-Design
+  versionName: R-Design
   description: "Built for active driving. With gloss black details, unique wheels
     and a stylishly finished interior.\r"

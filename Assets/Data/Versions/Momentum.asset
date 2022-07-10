@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06016e8dd914346b1bb79879a009df8, type: 3}
   m_Name: Momentum
   m_EditorClassIdentifier: 
-  name: Momentum
+  versionName: Momentum
   description: Comfort that is the hallmark of an inspiring urban SUV. Contrasting
     exterior details and interior with premium textile upholstery.
