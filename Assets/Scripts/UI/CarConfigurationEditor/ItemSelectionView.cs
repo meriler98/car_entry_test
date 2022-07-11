@@ -4,13 +4,13 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class ItemSelectionView<T, V> : MonoBehaviour where V : ToggleButtonUI
+public abstract class ItemSelectionView<T> : MonoBehaviour
 {
-    [SerializeField] private ToggleGroupUI<V> toggleGroup;
+    [SerializeField] protected ToggleGroupUI toggleGroup;
 
     private RectTransform _cachedRectTranform;
     private T[] _item;
-    private Dictionary<V, T> _itemDirctionary = new Dictionary<V, T>();
+    private Dictionary<ToggleButtonUI, T> _itemDirctionary = new Dictionary<ToggleButtonUI, T>();
 
     public EventHandler<OnItemSelectedEventArgs<T>> OnItemSelected;
 
@@ -51,7 +51,7 @@ public class ItemSelectionView<T, V> : MonoBehaviour where V : ToggleButtonUI
         UpdateItem(toggleForVersion, isToggleOn);
     }*/
 
-    protected void UpdateItem(V toggle, bool isToggledOn)
+    protected void UpdateItem(ToggleButtonUI toggle, bool isToggledOn)
     {
         var correspontingItem = _itemDirctionary[toggle];
                 
@@ -76,19 +76,20 @@ public class ItemSelectionView<T, V> : MonoBehaviour where V : ToggleButtonUI
         // Replacing with new ones
         foreach (var item in _item)
         {
-            var toggle = toggleGroup.AddToggleToGroup();
-            
-            UpdateToggleVisual(toggle, item);
+            var toggle = AddToggle(item);
 
             _itemDirctionary[toggle] = item;
         }
     }
 
-    protected virtual void UpdateToggleVisual(V toggle, T item) { }
+    protected virtual ToggleButtonUI AddToggle(T item)
+    {
+        return toggleGroup.AddToggleToGroup();
+    }
 
-    protected virtual void ItemSelected(V toggle, bool IsToggledOn, T correspondingItem) { }
+    protected virtual void ItemSelected(ToggleButtonUI toggle, bool IsToggledOn, T correspondingItem) { }
 
-    private void ToggleGroup_OnToggleButtonSelected(object sender, ToggleGroupUI<V>.OnToggleSelectedEventArgs e)
+    private void ToggleGroup_OnToggleButtonSelected(object sender, ToggleGroupUI.OnToggleSelectedEventArgs e)
     {
         var toggleVersionPair = _itemDirctionary
             .FirstOrDefault(x => x.Key == e.SelectedToggle);
@@ -99,7 +100,7 @@ public class ItemSelectionView<T, V> : MonoBehaviour where V : ToggleButtonUI
             return;
         }
         
-        UpdateItem((V) e.SelectedToggle, e.IsToggledOn);
+        UpdateItem((ToggleButtonUI) e.SelectedToggle, e.IsToggledOn);
         
         if(e.IsToggledOn)
             OnItemSelected?.Invoke(this, new OnItemSelectedEventArgs<T>(toggleVersionPair.Value));

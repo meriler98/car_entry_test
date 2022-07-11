@@ -6,16 +6,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VersionSelectionView : ItemSelectionView<VersionInfoSO, ToggleTextButtonUI>
+public class VersionSelectionView : ItemSelectionView<VersionInfoSO>
 {
+    [SerializeField] private ToggleTextButtonUI textToggle;
     [SerializeField] private TMP_Text descriptionText;
 
-    protected override void UpdateToggleVisual(ToggleTextButtonUI toggle, VersionInfoSO item)
+    protected override ToggleButtonUI AddToggle(VersionInfoSO item)
     {
+        var toggle = toggleGroup.AddToggleToGroup(textToggle) as ToggleTextButtonUI;
+        
         toggle.SetText(item.VersionName);
+
+        return toggle;
     }
 
-    protected override void ItemSelected(ToggleTextButtonUI toggle, bool IsToggledOn, VersionInfoSO correspondingItem)
+    protected override void ItemSelected(ToggleButtonUI toggle, bool IsToggledOn, VersionInfoSO correspondingItem)
     {
         if (IsToggledOn)
         {

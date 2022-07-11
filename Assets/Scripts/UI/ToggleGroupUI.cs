@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToggleGroupUI<T> : MonoBehaviour where T : ToggleButtonUI
+public class ToggleGroupUI : MonoBehaviour
 {
     [SerializeField] private bool singleSelection;
-    [SerializeField] private T toggleTemplate;
+    [SerializeField] private ToggleButtonUI toggleTemplate;
     
-    private List<T> _toggles = new List<T>();
+    private List<ToggleButtonUI> _toggles = new List<ToggleButtonUI>();
 
-    public T[] Toggles => _toggles.ToArray();
+    public ToggleButtonUI[] Toggles => _toggles.ToArray();
     
     public EventHandler<OnToggleSelectedEventArgs> OnToggleButtonSelected;
 
-    public T AddToggleToGroup()
+    public ToggleButtonUI AddToggleToGroup()
     {
         var newToggle = Instantiate(toggleTemplate, transform);
         
@@ -22,8 +22,18 @@ public class ToggleGroupUI<T> : MonoBehaviour where T : ToggleButtonUI
 
         return newToggle;
     }
+    
+    public ToggleButtonUI AddToggleToGroup(ToggleButtonUI toggleButtonUI)
+    {
+        var newToggle = Instantiate(toggleButtonUI, transform);
+        
+        _toggles.Add(newToggle);
+        newToggle.OnToggled += Toggle_OnToggled;
+        
+        return newToggle;
+    }
 
-    public void RemoveToggleFromGroup(T toggle)
+    public void RemoveToggleFromGroup(ToggleButtonUI toggle)
     {
         if(!_toggles.Contains(toggle)) return;
 
@@ -42,7 +52,7 @@ public class ToggleGroupUI<T> : MonoBehaviour where T : ToggleButtonUI
         _toggles.Clear();
     }
 
-    public void SetToggleSelection(T toggle, bool isToggledOn, bool notifySelection = false)
+    public void SetToggleSelection(ToggleButtonUI toggle, bool isToggledOn, bool notifySelection = false)
     {
         if (!_toggles.Contains(toggle))
         {
@@ -78,7 +88,7 @@ public class ToggleGroupUI<T> : MonoBehaviour where T : ToggleButtonUI
 
     private void Toggle_OnToggled(object sender, ToggleButtonUI.OnToggledEventArgs e)
     {
-        var toggle = (T) sender;
+        var toggle = (ToggleButtonUI) sender;
         
         SetToggleSelection(toggle, e.IsToggledOn);
         

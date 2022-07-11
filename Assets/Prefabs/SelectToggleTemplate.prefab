@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7898130391690936408}
   - component: {fileID: 7898130391690936413}
   - component: {fileID: 7898130391690936414}
-  - component: {fileID: 4594101470118343028}
+  - component: {fileID: 191287425732308606}
   m_Layer: 5
-  m_Name: SelectButtonTemplate
+  m_Name: SelectToggleTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4594101470118343028
+--- !u!114 &191287425732308606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,14 +85,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7898130391690936409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ffeda216474b349af8b8a723568d2a, type: 3}
+  m_Script: {fileID: 11500000, guid: ded50eaae1354d2984ca884f00a99579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundGraphics: {fileID: 7898130391690936414}
-  text: {fileID: 7898130392413773339}
   toggleOffTint: {r: 1, g: 1, b: 1, a: 1}
   toggleOnTint: {r: 0.41960788, g: 0.21960786, b: 0.9843138, a: 1}
   pressedTint: {r: 0.3137255, g: 0.14901961, b: 0.7725491, a: 1}
+  textField: {fileID: 7898130392413773339}
 --- !u!1 &7898130392413773333
 GameObject:
   m_ObjectHideFlags: 0
