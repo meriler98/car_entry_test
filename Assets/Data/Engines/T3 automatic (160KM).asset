@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c385cd0a624ab0abba1202786c55be, type: 3}
   m_Name: T3 automatic (160KM)
   m_EditorClassIdentifier: 
-  name: T3 automatic (160KM)
+  engineName: T3 automatic (160KM)
   compatibleVersions:
   - {fileID: 11400000, guid: 9aac86f4e6d9dee41b8f82f3dabd85cb, type: 2}
   - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}
