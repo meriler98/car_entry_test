@@ -4,13 +4,13 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class ItemSelectionView<T> : MonoBehaviour
+public class ItemSelectionView<T, V> : MonoBehaviour where V : ToggleButtonUI
 {
-    [SerializeField] private ToggleGroupUI toggleGroup;
+    [SerializeField] private ToggleGroupUI<V> toggleGroup;
 
     private RectTransform _cachedRectTranform;
     private T[] _item;
-    private Dictionary<ToggleButtonUI, T> _itemDirctionary = new Dictionary<ToggleButtonUI, T>();
+    private Dictionary<V, T> _itemDirctionary = new Dictionary<V, T>();
 
     public EventHandler<OnItemSelectedEventArgs<T>> OnItemSelected;
 
@@ -51,7 +51,7 @@ public class ItemSelectionView<T> : MonoBehaviour
         UpdateItem(toggleForVersion, isToggleOn);
     }*/
 
-    protected void UpdateItem(ToggleButtonUI toggle, bool isToggledOn)
+    protected void UpdateItem(V toggle, bool isToggledOn)
     {
         var correspontingItem = _itemDirctionary[toggle];
                 
@@ -84,14 +84,11 @@ public class ItemSelectionView<T> : MonoBehaviour
         }
     }
 
-    protected virtual void UpdateToggleVisual(ToggleButtonUI toggle, T item) { }
+    protected virtual void UpdateToggleVisual(V toggle, T item) { }
 
-    protected virtual void ItemSelected(ToggleButtonUI toggle, bool IsToggledOn, T correspondingItem)
-    {
-        
-    }
+    protected virtual void ItemSelected(V toggle, bool IsToggledOn, T correspondingItem) { }
 
-    private void ToggleGroup_OnToggleButtonSelected(object sender, ToggleGroupUI.OnToggleSelectedEventArgs e)
+    private void ToggleGroup_OnToggleButtonSelected(object sender, ToggleGroupUI<V>.OnToggleSelectedEventArgs e)
     {
         var toggleVersionPair = _itemDirctionary
             .FirstOrDefault(x => x.Key == e.SelectedToggle);
@@ -102,7 +99,7 @@ public class ItemSelectionView<T> : MonoBehaviour
             return;
         }
         
-        UpdateItem(e.SelectedToggle, e.IsToggledOn);
+        UpdateItem((V) e.SelectedToggle, e.IsToggledOn);
         
         if(e.IsToggledOn)
             OnItemSelected?.Invoke(this, new OnItemSelectedEventArgs<T>(toggleVersionPair.Value));

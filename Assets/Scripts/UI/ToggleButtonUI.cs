@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ToggleButtonUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Image backgroundGraphics;
-    [SerializeField] private TMP_Text text;
     [SerializeField] private Color toggleOffTint;
     [SerializeField] private Color toggleOnTint;
     [SerializeField] private Color pressedTint;
@@ -26,13 +25,6 @@ public class ToggleButtonUI : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerUp(PointerEventData eventData)
     {
         SetToggle(!_isToggledOn, true);
-    }
-
-    public void SetButtonText(string toggleText)
-    {
-        if(text == null) return;
-        
-        text.text = toggleText;
     }
 
     public void SetToggle(bool isToggledOn, bool notifyToggleEvent = false)

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToggleGroupUI : MonoBehaviour
+public class ToggleGroupUI<T> : MonoBehaviour where T : ToggleButtonUI
 {
     [SerializeField] private bool singleSelection;
-    [SerializeField] private ToggleButtonUI toggleTemplate;
+    [SerializeField] private T toggleTemplate;
     
-    private List<ToggleButtonUI> _toggles = new List<ToggleButtonUI>();
+    private List<T> _toggles = new List<T>();
 
-    public ToggleButtonUI[] Toggles => _toggles.ToArray();
+    public T[] Toggles => _toggles.ToArray();
     
     public EventHandler<OnToggleSelectedEventArgs> OnToggleButtonSelected;
 
-    public ToggleButtonUI AddToggleToGroup()
+    public T AddToggleToGroup()
     {
         var newToggle = Instantiate(toggleTemplate, transform);
         
@@ -23,7 +23,7 @@ public class ToggleGroupUI : MonoBehaviour
         return newToggle;
     }
 
-    public void RemoveToggleFromGroup(ToggleButtonUI toggle)
+    public void RemoveToggleFromGroup(T toggle)
     {
         if(!_toggles.Contains(toggle)) return;
 
@@ -42,7 +42,7 @@ public class ToggleGroupUI : MonoBehaviour
         _toggles.Clear();
     }
 
-    public void SetToggleSelection(ToggleButtonUI toggle, bool isToggledOn, bool notifySelection = false)
+    public void SetToggleSelection(T toggle, bool isToggledOn, bool notifySelection = false)
     {
         if (!_toggles.Contains(toggle))
         {
@@ -78,7 +78,7 @@ public class ToggleGroupUI : MonoBehaviour
 
     private void Toggle_OnToggled(object sender, ToggleButtonUI.OnToggledEventArgs e)
     {
-        var toggle = (ToggleButtonUI) sender;
+        var toggle = (T) sender;
         
         SetToggleSelection(toggle, e.IsToggledOn);
         

@@ -6,16 +6,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VersionSelectionView : ItemSelectionView<VersionInfoSO>
+public class VersionSelectionView : ItemSelectionView<VersionInfoSO, ToggleTextButtonUI>
 {
     [SerializeField] private TMP_Text descriptionText;
 
-    protected override void UpdateToggleVisual(ToggleButtonUI toggle, VersionInfoSO item)
+    protected override void UpdateToggleVisual(ToggleTextButtonUI toggle, VersionInfoSO item)
     {
-        toggle.SetButtonText(item.VersionName);
+        toggle.SetText(item.VersionName);
     }
 
-    protected override void ItemSelected(ToggleButtonUI toggle, bool IsToggledOn, VersionInfoSO correspondingItem)
+    protected override void ItemSelected(ToggleTextButtonUI toggle, bool IsToggledOn, VersionInfoSO correspondingItem)
     {
         if (IsToggledOn)
         {
