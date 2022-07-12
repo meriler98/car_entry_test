@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Glacier Silver
   m_EditorClassIdentifier: 
   color: {r: 0.84313726, g: 0.84313726, b: 0.84313726, a: 1}
+  isOption: 1
   compatibleVersions:
-  - versionInfo: {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}
-    isOption: 1
-  - versionInfo: {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}
-    isOption: 1
-  - versionInfo: {fileID: 11400000, guid: 9aac86f4e6d9dee41b8f82f3dabd85cb, type: 2}
-    isOption: 1
+  - {fileID: 11400000, guid: 9aac86f4e6d9dee41b8f82f3dabd85cb, type: 2}
+  - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}
+  - {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}

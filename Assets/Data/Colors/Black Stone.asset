@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Black Stone
   m_EditorClassIdentifier: 
   color: {r: 0.17254902, g: 0.14509805, b: 0.14901961, a: 1}
+  isOption: 0
   compatibleVersions:
-  - versionInfo: {fileID: 11400000, guid: 9aac86f4e6d9dee41b8f82f3dabd85cb, type: 2}
-    isOption: 0
-  - versionInfo: {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}
-    isOption: 0
-  - versionInfo: {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}
-    isOption: 0
+  - {fileID: 11400000, guid: 9aac86f4e6d9dee41b8f82f3dabd85cb, type: 2}
+  - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}
+  - {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}

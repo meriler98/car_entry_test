@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Its Green
   m_EditorClassIdentifier: 
   color: {r: 0.5647059, g: 0.93333334, b: 0.5647059, a: 1}
+  isOption: 1
   compatibleVersions:
-  - versionInfo: {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}
-    isOption: 1
+  - {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}
