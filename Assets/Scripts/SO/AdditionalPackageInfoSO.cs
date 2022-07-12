@@ -4,9 +4,9 @@
 public class AdditionalPackageInfoSO : ScriptableObject
 {
     [SerializeField] private string packageName;
-    [SerializeField] private VersionCompatibilityData[] compatibleVersions;
+    [SerializeField] private VersionInfoSO[] compatibleVersions;
 
     public string PackageName => packageName;
-    public VersionCompatibilityData[] CompatibleVersions => compatibleVersions;
+    public VersionInfoSO[] CompatibleVersions => compatibleVersions;
 
 }

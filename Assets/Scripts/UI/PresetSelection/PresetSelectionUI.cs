@@ -27,6 +27,8 @@ public class PresetSelectionUI : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        
+        configurationLoaderView.UpdateDropdown();
     }
     
     public void Hide()

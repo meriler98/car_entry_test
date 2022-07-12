@@ -16,9 +16,12 @@ public class ConfigurationLoaderView : MonoBehaviour
 
     private void Start()
     {
-        InitializeDropdown();
-        loadButton.interactable = false;
+        UpdateDropdown();
+
+        dropdown.onValueChanged.AddListener(Dropdown_OnValueChanged);
         loadButton.onClick.AddListener(Load_OnClick);
+        
+        loadButton.interactable = false;
     }
 
     private void OnDestroy()
@@ -27,16 +30,14 @@ public class ConfigurationLoaderView : MonoBehaviour
         loadButton.onClick.RemoveListener(Load_OnClick);
     }
 
-    private void InitializeDropdown()
+    public void UpdateDropdown()
     {
         var dropList = new List<TMP_Dropdown.OptionData>();
         dropList.Add(new TMP_Dropdown.OptionData("Select"));
         // Load items from save data
         dropList.Add(new TMP_Dropdown.OptionData("My config 1"));
 
-        dropdown.options = dropList; 
-
-        dropdown.onValueChanged.AddListener(Dropdown_OnValueChanged);
+        dropdown.options = dropList;
     }
 
     private void Dropdown_OnValueChanged(int index)

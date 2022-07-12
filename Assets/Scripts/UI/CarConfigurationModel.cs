@@ -20,22 +20,22 @@ public class CarConfigurationModel
 
     public void SetVersion(VersionInfoSO version)
     {
-        versionInfoId = version.GetInstanceID();
+        versionInfoId = version == null ? 0 : version.GetInstanceID();
     }
     
     public void SetEngine(EngineInfoSO engine)
     {
-        engineInfoId = engine.GetInstanceID();
+        engineInfoId = engine == null ? 0 : engine.GetInstanceID();
     }
 
     public void SetColor(ColorInfoSO color)
     {
-        colorInfoId = color.GetInstanceID();
+        colorInfoId = color == null ? 0 : color.GetInstanceID();
     }
 
     public void SetUpholstery(UpholsteryInfoSO upholstery)
     {
-        upholsteryInfoId = upholstery.GetInstanceID();
+        upholsteryInfoId = upholstery == null ? 0 : upholstery.GetInstanceID();
     }
 
     public void AddAdditionalPackageInfo(AdditionalPackageInfoSO additionalPackageInfo)

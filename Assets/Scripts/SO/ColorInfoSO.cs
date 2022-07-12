@@ -5,8 +5,10 @@ using UnityEngine;
 public class ColorInfoSO : ScriptableObject
 {
     [SerializeField] private Color color = Color.white;
-    [SerializeField] private VersionCompatibilityData[] compatibleVersions;
+    [SerializeField] private bool isOption;
+    [SerializeField] private VersionInfoSO[] compatibleVersions;
 
     public Color Color => color;
-    public VersionCompatibilityData[] CompatibleVersions => compatibleVersions;
+    public bool IsOption => isOption;
+    public VersionInfoSO[] CompatibleVersions => compatibleVersions;
 }
