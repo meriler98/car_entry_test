@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,15 +36,23 @@ public class ConfigurationLoaderView : MonoBehaviour
         var dropList = new List<TMP_Dropdown.OptionData>();
         dropList.Add(new TMP_Dropdown.OptionData("Select"));
         // Load items from save data
-        dropList.Add(new TMP_Dropdown.OptionData("My config 1"));
+        dropList.AddRange(
+            GlobalObjects.GetPersistentData().CarConfigurations.Select(x =>
+                new TMP_Dropdown.OptionData(x.PresetName)
+            ));
 
         dropdown.options = dropList;
     }
 
     private void Dropdown_OnValueChanged(int index)
     {
-        // First option always is a placeholder with "Select" text. Ignoring it
-        if(dropdown.options.Count < 2 && index > 0) return;
+        // First option always is a placeholder with "Select" text. Resetting values
+        if (dropdown.options.Count < 2 || index == 0)
+        {
+            loadButton.interactable = false;
+            _selectedDataIndex = -1;
+            return;
+        }
 
         _selectedDataIndex = index - 1;
         loadButton.interactable = true;

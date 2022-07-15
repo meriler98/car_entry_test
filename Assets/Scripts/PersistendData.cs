@@ -9,6 +9,8 @@ public class PersistentData : MonoBehaviour
     
     private List<CarConfigurationModel> _carConfigurations;
 
+    public CarConfigurationModel[] CarConfigurations => _carConfigurations.ToArray();
+
     private void Awake()
     {
         Load();
