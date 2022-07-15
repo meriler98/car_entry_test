@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62778da925d347bda1e5ef368e46536b, type: 3}
   m_Name: Black Stone
   m_EditorClassIdentifier: 
+  guid: 7c3104dd-eccf-459d-8971-33abe466a840
   color: {r: 0.17254902, g: 0.14509805, b: 0.14901961, a: 1}
   isOption: 0
   compatibleVersions:

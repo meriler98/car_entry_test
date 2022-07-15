@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6ba866e67c4b4488bf844b3d28abff, type: 3}
   m_Name: Winter
   m_EditorClassIdentifier: 
-  guid: a5e1e9d1-5a0d-472e-97e8-30df69cd3545
+  guid: 766a7625-c2ca-472c-ac42-df72661ba727
   packageName: Winter
   compatibleVersions:
   - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}

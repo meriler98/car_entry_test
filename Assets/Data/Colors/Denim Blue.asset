@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62778da925d347bda1e5ef368e46536b, type: 3}
   m_Name: Denim Blue
   m_EditorClassIdentifier: 
+  guid: 14f0f193-e03b-42e1-a49a-2df826819fb4
   color: {r: 0.18431373, g: 0.39215687, b: 0.4745098, a: 1}
   isOption: 1
   compatibleVersions:

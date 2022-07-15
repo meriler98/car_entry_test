@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62778da925d347bda1e5ef368e46536b, type: 3}
   m_Name: Fusion Red
   m_EditorClassIdentifier: 
+  guid: 5f01e3bb-5ec6-43d5-90df-2aee14ca922e
   color: {r: 1, g: 0.38039216, b: 0.3882353, a: 1}
   isOption: 1
   compatibleVersions:

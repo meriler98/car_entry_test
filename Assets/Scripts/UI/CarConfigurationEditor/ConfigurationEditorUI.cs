@@ -70,22 +70,28 @@ public class ConfigurationEditorUI : MonoBehaviour
 
         scrollRect.verticalNormalizedPosition = 1;
 
-        _versionSelector.OnSelectedItemsChange += VersionSelector_OnVersionSelected;
-        _engineSelector.OnSelectedItemsChange += EngineSelector_OnEngineSelected;
-        _colorSelector.OnSelectedItemsChange += ColorSelector_OnColorSelected;
-        _upholsterySelector.OnSelectedItemsChange += UpholsterySelector_OnUpholsterySelected;
-        _additionalPackageSelector.OnSelectedItemsChange += AdditionalPackagesSelector_OnAdditionalPackagesSelected;
-
         if (_currentModel != null)
         {
-            if (_currentModel.VersionInfoId != 0)
+            if (_currentModel.VersionInfoId != "")
                 _versionSelector.SelectVersionById(_currentModel.VersionInfoId);
-            if (_currentModel.EngineInfoId != 0)
+            if (_currentModel.EngineInfoId != "")
                 _engineSelector.SelectEngineById(_currentModel.EngineInfoId);
-            if (_currentModel.ColorInfoId != 0)
+            if (_currentModel.ColorInfoId != "")
+            {
                 _colorSelector.SelectColorById(_currentModel.ColorInfoId);
-            if (_currentModel.UpholsteryInfoId != 0)
+
+                var colorSO = GlobalObjects.GetPersistentData().ConfigurationLookup.ColorInfos.FirstOrDefault(x => x.Guid == _currentModel.ColorInfoId);
+                if(colorSO != null)
+                    carColor.SetPartColour(colorSO.Color);
+            }
+            if (_currentModel.UpholsteryInfoId != "")
+            {
                 _upholsterySelector.SelectUpholsteryById(_currentModel.UpholsteryInfoId);
+
+                var upholsterySO = GlobalObjects.GetPersistentData().ConfigurationLookup.UpholsteryInfos.FirstOrDefault(x => x.Guid == _currentModel.ColorInfoId);
+                if (upholsterySO != null)
+                    upholsteryColor.SetPartColour(upholsterySO.Color);
+            }
 
 
             if (_currentModel.AdditionalPackageInfoIds != null)
@@ -100,6 +106,12 @@ public class ConfigurationEditorUI : MonoBehaviour
         {
             _currentModel = new CarConfigurationModel();
         }
+
+        _versionSelector.OnSelectedItemsChange += VersionSelector_OnVersionSelected;
+        _engineSelector.OnSelectedItemsChange += EngineSelector_OnEngineSelected;
+        _colorSelector.OnSelectedItemsChange += ColorSelector_OnColorSelected;
+        _upholsterySelector.OnSelectedItemsChange += UpholsterySelector_OnUpholsterySelected;
+        _additionalPackageSelector.OnSelectedItemsChange += AdditionalPackagesSelector_OnAdditionalPackagesSelected;
     }
 
     private void DeinitializeView()
@@ -128,10 +140,10 @@ public class ConfigurationEditorUI : MonoBehaviour
 
         if (versionInfo != null)
         {
-            _engineSelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
-            _colorSelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
-            _upholsterySelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
-            _additionalPackageSelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
+            _engineSelector.EnableButtonsByVersionCompatibility(versionInfo.Guid);
+            _colorSelector.EnableButtonsByVersionCompatibility(versionInfo.Guid);
+            _upholsterySelector.EnableButtonsByVersionCompatibility(versionInfo.Guid);
+            _additionalPackageSelector.EnableButtonsByVersionCompatibility(versionInfo.Guid);
         }
     }
 

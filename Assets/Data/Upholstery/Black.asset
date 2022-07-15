@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d27e85316c64292a7a23a823fcb1910, type: 3}
   m_Name: Black
   m_EditorClassIdentifier: 
+  guid: 5261c320-11e0-4b5b-aac5-75d8f2bec1e9
   color: {r: 0, g: 0, b: 0, a: 1}
   compatibleVersions:
   - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}

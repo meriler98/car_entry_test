@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6ba866e67c4b4488bf844b3d28abff, type: 3}
   m_Name: Lighting
   m_EditorClassIdentifier: 
-  guid: b6952c84-eb80-4a10-b921-d2a0104fb336
+  guid: 01547f3b-6fb7-4f12-aceb-104d2e7325c4
   packageName: Lighting
   compatibleVersions:
   - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}

@@ -16,10 +16,13 @@ public abstract class ToggleGroupItemSelector<T> : MonoBehaviour
 
     public EventHandler OnSelectedItemsChange;
 
-    private void Start()
+    protected virtual void Awake()
     {
         Initialize();
-        
+    }
+
+    private void Start()
+    {
         toggleButtonGroup.OnSelectionChanged += ToggleGroup_SelectionChanged;
     }
 

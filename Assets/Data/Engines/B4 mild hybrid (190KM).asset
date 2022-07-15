@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c385cd0a624ab0abba1202786c55be, type: 3}
   m_Name: B4 mild hybrid (190KM)
   m_EditorClassIdentifier: 
+  guid: 837cac15-55e5-4c43-8d47-d8f82cae174f
   engineName: B4 mild hybrid (190KM)
   compatibleVersions:
   - {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}

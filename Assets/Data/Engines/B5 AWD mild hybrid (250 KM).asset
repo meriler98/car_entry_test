@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c385cd0a624ab0abba1202786c55be, type: 3}
   m_Name: B5 AWD mild hybrid (250 KM)
   m_EditorClassIdentifier: 
+  guid: dcac1ccc-5b30-4fc1-b00f-eb486a761199
   engineName: B5 AWD mild hybrid (250 KM)
   compatibleVersions:
   - {fileID: 11400000, guid: 019392ac8c6e4a843ad689c6b21c9e6d, type: 2}

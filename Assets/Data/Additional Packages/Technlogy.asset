@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6ba866e67c4b4488bf844b3d28abff, type: 3}
   m_Name: Technlogy
   m_EditorClassIdentifier: 
-  guid: 4aa25ddb-e9cb-4ecd-98af-8a02160d4f78
+  guid: 2c0040b5-cf43-4a19-9816-df76919e59e3
   packageName: Technology
   compatibleVersions:
   - {fileID: 11400000, guid: 8bfb4b629339b5f459c0c2b26100f4d5, type: 2}

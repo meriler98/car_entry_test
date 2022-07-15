@@ -2,19 +2,19 @@
 
 public class ToggleUpholsteryGroupSelector : ToggleGroupItemSelector<UpholsteryData>
 {
-    public void SelectUpholsteryById(int id)
+    public void SelectUpholsteryById(string guid)
     {
-        var foundData = Items.FirstOrDefault(x => x.Item.GetInstanceID() == id);
+        var foundData = Items.FirstOrDefault(x => x.Item.Guid == guid);
 
         if (foundData == null) return;
 
         _buttonDictionary[foundData].SetToggle(true, true);
     }
 
-    public void EnableButtonsByVersionCompatibility(int versionId)
+    public void EnableButtonsByVersionCompatibility(string versionGuid)
     {
         var foundVersion = GlobalObjects.GetPersistentData().ConfigurationLookup.VersionInfos
-            .First(x => x.GetInstanceID() == versionId);
+            .First(x => x.Guid == versionGuid);
 
         foreach (var buttonPair in _buttonDictionary)
         {

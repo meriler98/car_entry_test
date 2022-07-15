@@ -9,16 +9,18 @@ public class ToggleVersionGroupSelector : ToggleGroupItemSelector<VersionData>
 
     private RectTransform _descriptionRect;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _descriptionRect = descriptionText.GetComponent<RectTransform>();
         
         OnSelectedItemsChange += VersionGroup_OnSelectedItemsChange;
     }
 
-    public void SelectVersionById(int id)
+    public void SelectVersionById(string guid)
     {
-        var foundData = Items.FirstOrDefault(x => x.Item.GetInstanceID() == id);
+        var foundData = Items.FirstOrDefault(x => x.Item.Guid == guid);
 
         if (foundData == null) return;
 

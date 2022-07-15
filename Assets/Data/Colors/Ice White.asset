@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62778da925d347bda1e5ef368e46536b, type: 3}
   m_Name: Ice White
   m_EditorClassIdentifier: 
+  guid: ab22d4df-2b2d-49ae-b79f-6b12486c2d20
   color: {r: 0.92941177, g: 0.95686275, b: 0.9607843, a: 1}
   isOption: 0
   compatibleVersions:
