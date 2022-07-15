@@ -8,6 +8,7 @@ public class ConfiguratorUI : MonoBehaviour
     [SerializeField] private PresetSelectionUI presetSelectionUI;
     [SerializeField] private ConfigurationEditorUI configuratorEditor;
     [SerializeField] private SavePresetDialog savePresetDialog;
+    [SerializeField] private ConfirmationDialog confirmationDialog;
 
 
     private int _selectedPresetIndex = -1;
@@ -25,6 +26,7 @@ public class ConfiguratorUI : MonoBehaviour
         presetSelectionUI.Show();
         configuratorEditor.Hide();
         savePresetDialog.Hide();
+        confirmationDialog.Hide();
     }
 
     private void OnDestroy()
@@ -80,7 +82,7 @@ public class ConfiguratorUI : MonoBehaviour
     
     private void ConfigurationEditor_OnBackPressed(object sender, EventArgs e)
     {
-        // Show dialogue and set callback to go back
+        confirmationDialog.Show(ChangeToPresetSelection);
     }
     
     #endregion

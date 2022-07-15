@@ -42,6 +42,9 @@ public class ConfigurationLoaderView : MonoBehaviour
             ));
 
         dropdown.options = dropList;
+
+        dropdown.value = 0;
+        _selectedDataIndex = -1;
     }
 
     private void Dropdown_OnValueChanged(int index)
