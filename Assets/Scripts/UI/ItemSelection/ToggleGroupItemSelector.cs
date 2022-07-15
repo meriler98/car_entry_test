@@ -52,6 +52,14 @@ public abstract class ToggleGroupItemSelector<T> : MonoBehaviour
         toggleButtonGroup.RemoveSelection(_buttonDictionary[item]);
     }
 
+    public void ClearSelection()
+    {
+        foreach(var buttonPairs in _buttonDictionary)
+        {
+            buttonPairs.Value.SetToggle(false, true);
+        }
+    }
+
     public void SetEnableSelection(T item, bool enable)
     {
         var button = toggleButtonGroup.ToggleButtons.FirstOrDefault(x => _buttonDictionary[item] == x);

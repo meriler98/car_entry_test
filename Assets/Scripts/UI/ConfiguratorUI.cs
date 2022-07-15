@@ -63,22 +63,26 @@ public class ConfiguratorUI : MonoBehaviour
 
     private void ConfigurationEditor_OnSaved(object sender, ConfigurationEditorUI.OnSavePressedEventArgs e)
     {
-        savePresetDialog.Show((x) =>
-        {
-            var model = e.ModelToSave;
-            model.PresetName = x;
+        var model = e.ModelToSave;
 
-            // Index less then zero means that we not editing existing model
-            if (e.IndexToUpdate < 0)
+        if (e.IndexToUpdate < 0) {
+
+            savePresetDialog.Show((x) =>
+            {
+                model.PresetName = x;
                 _persistentData.AddCarConfiguration(model);
-            else
-                _persistentData.UpdateCarConfiguration(model, e.IndexToUpdate);
 
-            _persistentData.Save();
-
+                ChangeToPresetSelection();
+            });
+        }
+        else
+        {
+            _persistentData.UpdateCarConfiguration(model, e.IndexToUpdate);
             ChangeToPresetSelection();
-        });
+        }
+        _persistentData.Save();
     }
+
     
     private void ConfigurationEditor_OnBackPressed(object sender, EventArgs e)
     {

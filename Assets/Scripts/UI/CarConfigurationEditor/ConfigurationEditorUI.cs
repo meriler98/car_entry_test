@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ConfigurationEditorUI : MonoBehaviour
 {
+    [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Button saveButton;
     [SerializeField] private Button backButton;
     
@@ -59,7 +60,13 @@ public class ConfigurationEditorUI : MonoBehaviour
 
     private void InitializeViews()
     {
-        if(_currentModel != null)
+        _versionSelector.ClearSelection();
+        _engineSelector.ClearSelection();
+        _colorSelector.ClearSelection();
+        _upholsterySelector.ClearSelection();
+        _additionalPackageSelector.ClearSelection();
+
+        if (_currentModel != null)
         {
             if(_currentModel.VersionInfoId != 0)
                 _versionSelector.SelectVersionById(_currentModel.VersionInfoId);
@@ -83,6 +90,8 @@ public class ConfigurationEditorUI : MonoBehaviour
         {
             _currentModel = new CarConfigurationModel();
         }
+
+        scrollRect.verticalNormalizedPosition = 1;
 
         _versionSelector.OnSelectedItemsChange += VersionSelector_OnVersionSelected;
         _engineSelector.OnSelectedItemsChange += EngineSelector_OnEngineSelected;
