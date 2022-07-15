@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class PersistentData : MonoBehaviour
 {
+    [SerializeField] private ConfiguratorDataLookupSO configurationLookup;
+
     private const string PREF_KEY_DATA = "PREF_LOADDATA";
     
     private List<CarConfigurationModel> _carConfigurations;
 
+
     public CarConfigurationModel[] CarConfigurations => _carConfigurations.ToArray();
+
+    public ConfiguratorDataLookupSO ConfigurationLookup => configurationLookup;
 
     private void Awake()
     {

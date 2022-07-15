@@ -21,7 +21,7 @@ public class ToggleButtonActivatingVisual : MonoBehaviour
 
     private void UpdateVisual()
     {
-        disabledGraphicsOverlay.SetActive(!enabled);
+        disabledGraphicsOverlay.SetActive(!toggleButton.IsEnabled);
         
         backgroundGraphics.SetActive(toggleButton.IsToggleOn);
     }

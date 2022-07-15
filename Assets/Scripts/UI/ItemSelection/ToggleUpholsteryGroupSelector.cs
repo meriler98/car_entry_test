@@ -10,4 +10,21 @@ public class ToggleUpholsteryGroupSelector : ToggleGroupItemSelector<UpholsteryD
 
         _buttonDictionary[foundData].SetToggle(true, true);
     }
+
+    public void EnableButtonsByVersionCompatibility(int versionId)
+    {
+        var foundVersion = GlobalObjects.GetPersistentData().ConfigurationLookup.VersionInfos
+            .First(x => x.GetInstanceID() == versionId);
+
+        foreach (var buttonPair in _buttonDictionary)
+        {
+            if (foundVersion == null)
+            {
+                buttonPair.Value.IsEnabled = false;
+                continue;
+            }
+
+            buttonPair.Value.IsEnabled = buttonPair.Key.Item.CompatibleVersions.Contains(foundVersion);
+        }
+    }
 }

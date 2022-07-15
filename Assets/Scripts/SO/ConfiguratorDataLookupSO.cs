@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Configurator Data", menuName = "Data/Configurator Data", order = 0)]
-public class ConfiguratorDataSO : ScriptableObject
+[CreateAssetMenu(fileName = "ConfiguratorDataLookup", menuName = "Data/Configurator Data Lookup", order = 0)]
+public class ConfiguratorDataLookupSO : ScriptableObject
 {
     [SerializeField] private VersionInfoSO[] versionInfos;
     [SerializeField] private EngineInfoSO[] engineInfos;

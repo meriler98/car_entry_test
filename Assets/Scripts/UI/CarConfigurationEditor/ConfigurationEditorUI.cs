@@ -66,15 +66,23 @@ public class ConfigurationEditorUI : MonoBehaviour
         _upholsterySelector.ClearSelection();
         _additionalPackageSelector.ClearSelection();
 
+        scrollRect.verticalNormalizedPosition = 1;
+
+        _versionSelector.OnSelectedItemsChange += VersionSelector_OnVersionSelected;
+        _engineSelector.OnSelectedItemsChange += EngineSelector_OnEngineSelected;
+        _colorSelector.OnSelectedItemsChange += ColorSelector_OnColorSelected;
+        _upholsterySelector.OnSelectedItemsChange += UpholsterySelector_OnUpholsterySelected;
+        _additionalPackageSelector.OnSelectedItemsChange += AdditionalPackagesSelector_OnAdditionalPackagesSelected;
+
         if (_currentModel != null)
         {
-            if(_currentModel.VersionInfoId != 0)
+            if (_currentModel.VersionInfoId != 0)
                 _versionSelector.SelectVersionById(_currentModel.VersionInfoId);
             if (_currentModel.EngineInfoId != 0)
                 _engineSelector.SelectEngineById(_currentModel.EngineInfoId);
-            if(_currentModel.ColorInfoId != 0)
+            if (_currentModel.ColorInfoId != 0)
                 _colorSelector.SelectColorById(_currentModel.ColorInfoId);
-            if(_currentModel.UpholsteryInfoId != 0)
+            if (_currentModel.UpholsteryInfoId != 0)
                 _upholsterySelector.SelectUpholsteryById(_currentModel.UpholsteryInfoId);
 
 
@@ -90,14 +98,6 @@ public class ConfigurationEditorUI : MonoBehaviour
         {
             _currentModel = new CarConfigurationModel();
         }
-
-        scrollRect.verticalNormalizedPosition = 1;
-
-        _versionSelector.OnSelectedItemsChange += VersionSelector_OnVersionSelected;
-        _engineSelector.OnSelectedItemsChange += EngineSelector_OnEngineSelected;
-        _colorSelector.OnSelectedItemsChange += ColorSelector_OnColorSelected;
-        _upholsterySelector.OnSelectedItemsChange += UpholsterySelector_OnUpholsterySelected;
-        _additionalPackageSelector.OnSelectedItemsChange += AdditionalPackagesSelector_OnAdditionalPackagesSelected;
     }
 
     private void DeinitializeView()
@@ -121,7 +121,16 @@ public class ConfigurationEditorUI : MonoBehaviour
 
     private void UpdateItemsForVersion(VersionInfoSO versionInfo)
     {
-        // TODO: After version selection update the availability of some items 
+        var infoId = versionInfo == null ? 0 : versionInfo.GetInstanceID();
+
+
+        if (versionInfo != null)
+        {
+            _engineSelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
+            _colorSelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
+            _upholsterySelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
+            _additionalPackageSelector.EnableButtonsByVersionCompatibility(versionInfo.GetInstanceID());
+        }
     }
 
     #region Subscribtions
