@@ -8,6 +8,8 @@ public class ConfigurationEditorUI : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Button saveButton;
     [SerializeField] private Button backButton;
+    [SerializeField] private CarColor carColor;
+    [SerializeField] private CarColor upholsteryColor;
     
     private ToggleVersionGroupSelector _versionSelector;
     private ToggleEngineGroupSelector _engineSelector;
@@ -158,6 +160,9 @@ public class ConfigurationEditorUI : MonoBehaviour
 
         var item = _colorSelector.SelectedItems.Length == 0 ? null : _colorSelector.SelectedItems[0].Item;
         _currentModel.SetColor(item);
+
+        if(item != null)
+            carColor.SetPartColour(item.Color);
     }
 
     private void UpholsterySelector_OnUpholsterySelected(object sender, EventArgs e)
@@ -166,6 +171,9 @@ public class ConfigurationEditorUI : MonoBehaviour
 
         var item = _upholsterySelector.SelectedItems.Length == 0 ? null : _upholsterySelector.SelectedItems[0].Item;
         _currentModel.SetUpholstery(item);
+
+        if (item != null)
+            upholsteryColor.SetPartColour(item.Color);
     }
 
     private void AdditionalPackagesSelector_OnAdditionalPackagesSelected(object sender, EventArgs e)

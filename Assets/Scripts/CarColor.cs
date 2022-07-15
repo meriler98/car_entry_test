@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class CarColor : MonoBehaviour {
 
+    [SerializeField] private Color defaultColor = Color.white;
+
     public List<GameObject> colouredBodyWorkParts = new List<GameObject>();
 
     public List<Material> mColourSet = new List<Material>();
@@ -11,7 +13,10 @@ public class CarColor : MonoBehaviour {
 
     private int currentColourIndex = 0;
 
-
+    private void Awake()
+    {
+        SetPartColour(defaultColor);
+    }
 
     public void SetColourByIndex(int index) {
         if (mColourSet.Count == 0) {
@@ -56,7 +61,7 @@ public class CarColor : MonoBehaviour {
     }
 
 
-    private void SetPartColour(Color lColour)
+    public void SetPartColour(Color lColour)
     {
         if (colouredBodyWorkParts.Count == 0)
             return;
