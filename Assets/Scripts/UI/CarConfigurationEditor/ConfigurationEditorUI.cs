@@ -59,6 +59,31 @@ public class ConfigurationEditorUI : MonoBehaviour
 
     private void InitializeViews()
     {
+        if(_currentModel != null)
+        {
+            if(_currentModel.VersionInfoId != 0)
+                _versionSelector.SelectVersionById(_currentModel.VersionInfoId);
+            if (_currentModel.EngineInfoId != 0)
+                _engineSelector.SelectEngineById(_currentModel.EngineInfoId);
+            if(_currentModel.ColorInfoId != 0)
+                _colorSelector.SelectColorById(_currentModel.ColorInfoId);
+            if(_currentModel.UpholsteryInfoId != 0)
+                _upholsterySelector.SelectUpholsteryById(_currentModel.UpholsteryInfoId);
+
+
+            if (_currentModel.AdditionalPackageInfoIds != null)
+            {
+                foreach (var packageId in _currentModel.AdditionalPackageInfoIds)
+                {
+                    _additionalPackageSelector.SelectAdditionalPackageById(packageId);
+                }
+            }
+        }
+        else
+        {
+            _currentModel = new CarConfigurationModel();
+        }
+
         _versionSelector.OnSelectedItemsChange += VersionSelector_OnVersionSelected;
         _engineSelector.OnSelectedItemsChange += EngineSelector_OnEngineSelected;
         _colorSelector.OnSelectedItemsChange += ColorSelector_OnColorSelected;

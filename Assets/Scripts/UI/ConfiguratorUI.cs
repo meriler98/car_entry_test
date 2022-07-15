@@ -41,7 +41,7 @@ public class ConfiguratorUI : MonoBehaviour
 
     #region Subscriptions
     
-    private void ChangeToConfiguratorEditor(CarConfigurationModel carModel)
+    private void ChangeToConfiguratorEditor(CarConfigurationModel carModel = null)
     {
         configuratorEditor.SetConfigurationModel(carModel);
         presetSelectionUI.Hide();
@@ -50,13 +50,13 @@ public class ConfiguratorUI : MonoBehaviour
 
     private void PresetLoader_OnCreateConfiguration(object sender, EventArgs e)
     {
-        ChangeToConfiguratorEditor(new CarConfigurationModel());
+        ChangeToConfiguratorEditor();
     }
 
     private void PresetLoader_OnLoadPreset(object sender, PresetSelectionUI.OnLoadPresetEventArgs e)
     {
         configuratorEditor.SetConfigurationEditingIndex(e.PresetIndex);
-        ChangeToConfiguratorEditor(_persistentData.GetCarConfiguration(_selectedPresetIndex));
+        ChangeToConfiguratorEditor(_persistentData.GetCarConfiguration(e.PresetIndex));
     }
 
     private void ConfigurationEditor_OnSaved(object sender, ConfigurationEditorUI.OnSavePressedEventArgs e)

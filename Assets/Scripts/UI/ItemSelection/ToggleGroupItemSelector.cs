@@ -9,7 +9,7 @@ public abstract class ToggleGroupItemSelector<T> : MonoBehaviour
 
     private T[] _items;
     private List<T> _selectedItems = new List<T>();
-    private Dictionary<T, ToggleButton> _buttonDictionary = new Dictionary<T, ToggleButton>();
+    protected Dictionary<T, ToggleButton> _buttonDictionary = new Dictionary<T, ToggleButton>();
 
     public T[] Items => _items;
     public T[] SelectedItems => _selectedItems.ToArray();

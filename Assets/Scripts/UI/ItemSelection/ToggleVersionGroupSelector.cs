@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,15 @@ public class ToggleVersionGroupSelector : ToggleGroupItemSelector<VersionData>
         _descriptionRect = descriptionText.GetComponent<RectTransform>();
         
         OnSelectedItemsChange += VersionGroup_OnSelectedItemsChange;
+    }
+
+    public void SelectVersionById(int id)
+    {
+        var foundData = Items.FirstOrDefault(x => x.Item.GetInstanceID() == id);
+
+        if (foundData == null) return;
+
+        _buttonDictionary[foundData].SetToggle(true, true);
     }
 
     private void VersionGroup_OnSelectedItemsChange(object sender, EventArgs e)
